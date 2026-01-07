@@ -1,5 +1,7 @@
 # Customer Churn Prediction (Time-Series)
 
+🔗 Live App: https://customer-churn-prediction-84.streamlit.app/
+
 This project builds a time-series customer churn prediction system using transactional retail data.
 
 ## Key Highlights
