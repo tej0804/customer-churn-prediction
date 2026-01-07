@@ -16,17 +16,14 @@ monetary = st.sidebar.number_input("Total Spend", min_value=1.0, value=500.0)
 avg_order_value = st.sidebar.number_input("Avg Order Value", min_value=1.0, value=100.0)
 purchase_intensity = st.sidebar.number_input("Purchase Intensity", min_value=0.01, value=0.05)
 
-input_data = np.array([[frequency, monetary, avg_order_value, purchase_intensity]])
-input_scaled = scaler.transform(input_data)
+if st.button("Predict Churn"):
+    X = np.array([[frequency, monetary, avg_order_value, purchase_intensity]])
+    X_scaled = scaler.transform(X)
 
-if st.button("Predict Churn Risk"):
-    prob = model.predict_proba(input_scaled)[0][1]
-
-    st.metric("Churn Probability", f"{prob:.2f}")
-
-    if prob > 0.6:
-        st.error("High Churn Risk 🚨")
-    elif prob > 0.3:
-        st.warning("Medium Churn Risk ⚠️")
+    # SAFE for both LR and XGBoost
+    if hasattr(model, "predict_proba"):
+        prob = model.predict_proba(X_scaled)[0][1]
     else:
-        st.success("Low Churn Risk ✅")
+        prob = model.predict(X_scaled)[0]
+
+    st.write(f"Churn Probability: **{prob:.2f}**")
