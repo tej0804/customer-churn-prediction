@@ -10,6 +10,14 @@ This project builds a time-series customer churn prediction system using transac
 - Achieved ROC-AUC ~0.80 using XGBoost
 - Deployed real-time prediction using Streamlit
 
+## Dataset
+The dataset used in this project is **Online Retail II (UCI)**.
+
+Due to size constraints, the raw dataset is not included in the repository.
+It can be downloaded from:
+https://www.kaggle.com/datasets/mashlyn/online-retail-ii-uci
+
+
 ## Tech Stack
 - Python
 - Pandas, NumPy
